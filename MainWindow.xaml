@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:lab5PR"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-	<Grid>
+	<Grid Background="Black">
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition Height="10*"/>
 		</Grid.RowDefinitions>
-		<TextBlock Grid.Row="0" Text="Fake QuickChat version 5.0" HorizontalAlignment="Center"/>
+		<TextBlock Grid.Row="0" Text="Fake QuickChat version 5.0" Foreground="Aqua" HorizontalAlignment="Center"/>
 		
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
 					<RowDefinition Height="7*"/>
 					<RowDefinition/>
 				</Grid.RowDefinitions>
-				<ListBox Grid.Row="0" x:Name="list_view"  HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="True">
+				<ListBox Grid.Row="0" x:Name="list_view" Background="LightGray" HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="True">
 					<ListBox.ItemContainerStyle>
 						<Style TargetType="ListBoxItem">
 							<Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
@@ -40,7 +40,7 @@
 									<ColumnDefinition Width="4*"/>
 								</Grid.ColumnDefinitions>
 								<TextBlock Grid.Column="0" TextAlignment="Center" Foreground="Blue" Text="{Binding Hour}"/>
-								<TextBlock Grid.Column="1" TextAlignment="Center" Foreground="YellowGreen" Text="{Binding From}"/>
+								<TextBlock Grid.Column="1" TextAlignment="Center" Foreground="DarkGreen" Text="{Binding From}"/>
 								<TextBlock Grid.Column="2" TextAlignment="Center" Foreground="Brown" Text ="{Binding Type}"/>
 								<TextBlock Grid.Column="3" TextAlignment="Center" Foreground="Red" Text="{Binding To}"/>
 								<TextBlock Grid.Column="4" TextAlignment="Center" TextWrapping="NoWrap" Text="{Binding Text}"/>
@@ -48,7 +48,7 @@
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
-				<TextBox Grid.Row="1" x:Name="InputField" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+				<TextBox Grid.Row="1" x:Name="InputField" Background="White" KeyDown="InputField_KeyDown" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 			</Grid>
 			<Grid Grid.Column="2">
 				<Grid.RowDefinitions>
@@ -61,10 +61,11 @@
 					<RowDefinition/>
 					<RowDefinition Height="2*"/>
 				</Grid.RowDefinitions>
-				<TextBlock Grid.Row="1" Text="Status" HorizontalAlignment="Center"/>
-				<TextBox x:Name="Old_name" Text="Username" KeyDown="Old_name_KeyDown" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Stretch"/>
+				<TextBlock Grid.Row="1" Text="Status" Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
+				<TextBox x:Name="Old_name" Background="White"  Text="Username" KeyDown="Old_name_KeyDown" Grid.Row="0" TextAlignment="Center" HorizontalAlignment="Stretch"/>
 				<Grid Grid.Row="2">
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
@@ -72,19 +73,20 @@
 					<RadioButton Grid.Column="0" Checked="Normal_Status_Checked" x:Name="Normal_Status" Background="Green" ToolTip="Normal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 					<RadioButton Grid.Column="1" Checked="DND_Status_Checked" x:Name="DND_Status" Background="Red" ToolTip="DND" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 					<RadioButton Grid.Column="2" Checked="Away_Status_Checked" x:Name="Away_Status" Background="Yellow" ToolTip="Away" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+					<RadioButton Grid.Column="3" Checked="Offline_Status_Checked" x:Name="Offline_Status" Background="Gray" ToolTip="Offline" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 				</Grid>
-				<TextBlock Grid.Row="3" Text="Topic" HorizontalAlignment="Center"/>
-				<TextBox Grid.Row="4" x:Name="Topic" Text="Topic" TextAlignment="Center" KeyDown="Topic_KeyDown"  HorizontalAlignment="Stretch" />
-				<TextBlock Grid.Row="5" Text="Message Type" HorizontalAlignment="Center"/>
+				<TextBlock Grid.Row="3" Text="Topic" Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
+				<TextBox Grid.Row="4" x:Name="Topic" Background="White" Text="Topic" TextAlignment="Center" KeyDown="Topic_KeyDown"  HorizontalAlignment="Stretch" />
+				<TextBlock Grid.Row="5" Text="Message Type" Foreground="WhiteSmoke" HorizontalAlignment="Center"/>
 				<Grid Grid.Row="6">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<RadioButton Checked="RadioButton_Checked" IsChecked="False" Content="Normal" Grid.Column="0" VerticalAlignment="Center"/>
-					<RadioButton Checked="RadioButton_Checked_1" Content="Private" Grid.Column="1" VerticalAlignment="Center"/>
-					<RadioButton Checked="RadioButton_Checked_2" Content="Channel" Grid.Column="2" VerticalAlignment="Center"/>
+					<RadioButton x:Name="Main_radio" Foreground="WhiteSmoke" Checked="RadioButton_Checked" IsChecked="False" Content="Main" Grid.Column="0" VerticalAlignment="Center"/>
+					<RadioButton x:Name="Private_radio" Foreground="WhiteSmoke" Checked="RadioButton_Checked_1" Content="Private" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,9" Width="69"/>
+					<RadioButton x:Name="Channel_radio" Foreground="WhiteSmoke" Checked="RadioButton_Checked_2" Content="Channel" Grid.Column="2" VerticalAlignment="Center"/>
 				</Grid>
 				<Grid Grid.Row="7" x:Name="Normal" Visibility="Visible">
 				</Grid>
@@ -98,16 +100,16 @@
 							<ColumnDefinition/>
 							<ColumnDefinition/>
 						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0" Text="From User:" VerticalAlignment="Center"/>
-						<TextBox Grid.Column="1" x:Name="private_my_name" Text="My name" HorizontalAlignment="Stretch"/>
+						<TextBlock Grid.Column="0" Foreground="WhiteSmoke" Text="From User:" VerticalAlignment="Center"/>
+						<TextBox Grid.Column="1" Background="White" x:Name="private_my_name" Text="My name" HorizontalAlignment="Stretch"/>
 					</Grid>
 					<Grid Grid.Row="1">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition/>
 							<ColumnDefinition/>
 						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0" Text="To User:" VerticalAlignment="Center"/>
-						<TextBox Grid.Column="1" x:Name="private_send_to" Text="Send to" HorizontalAlignment="Stretch"/>
+						<TextBlock Grid.Column="0" Foreground="WhiteSmoke" Text="To User:" VerticalAlignment="Center"/>
+						<TextBox Grid.Column="1" Background="White" x:Name="private_send_to" Text="Send to" HorizontalAlignment="Stretch"/>
 					</Grid>
 				</Grid>
 				<Grid Grid.Row="7" x:Name="Channel" Visibility="Collapsed">
@@ -116,15 +118,15 @@
 						<RowDefinition/>
 						<RowDefinition/>
 					</Grid.RowDefinitions>
-					<TextBlock Grid.Row="0" Text="Channel Name" HorizontalAlignment="Center"/>
-					<TextBox Grid.Row="1" x:Name="Channel_name" Text="Channel name" HorizontalAlignment="Stretch"/>
+					<TextBlock Grid.Row="0" Foreground="WhiteSmoke" Text="Channel Name" HorizontalAlignment="Center"/>
+					<TextBox Grid.Row="1" Background="White" x:Name="Channel_name" Text="Channel name" HorizontalAlignment="Stretch"/>
 					<Grid Grid.Row="2">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition/>
 							<ColumnDefinition/>
 						</Grid.ColumnDefinitions>
-						<Button Grid.Column="0" x:Name="Join" Content="Join" HorizontalAlignment="Stretch"/>
-						<Button Grid.Column="1" x:Name="Leave" Content="Leave" HorizontalAlignment="Stretch"/>
+						<Button Grid.Column="0" Foreground="WhiteSmoke" Background="DarkGray" Content="Join" Click="Button_Join" HorizontalAlignment="Stretch"/>
+						<Button Grid.Column="1" Foreground="WhiteSmoke" Background="DarkGray" Content="Leave" Click="Button_Leave" HorizontalAlignment="Stretch"/>
 					</Grid>
 				</Grid>
 			</Grid>
